@@ -7,14 +7,19 @@ part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
-  UserBloc(IUserFacade facade) : super(UserStateInitial()) {
+  UserBloc(IUserFacade facade) : super(UserState.initial()) {
     on<UserEventGet>((event, emit) async {
       try {
-        emit(UserStateLoading());
+        emit(UserState.initial().copyWith(isLoading: true));
         final user = await facade.getUser();
-        emit(UserStateLoaded(user: user));
+        emit(state.copyWith(user: user, isLoading: false));
       } catch (e) {
-        emit(const UserStateError(message: 'there was an unexpected error'));
+        emit(
+          state.copyWith(
+            error: 'there was an unexpected error',
+            isLoading: false,
+          ),
+        );
       }
     });
   }

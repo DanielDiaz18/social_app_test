@@ -21,6 +21,7 @@ class UserFakeRepo extends IUserRepo {
         name: _faker.person.name(),
         email: _faker.internet.email(),
         avatar: 'https://i.pravatar.cc/150?u=$id',
+        cover: 'https://picsum.photos/500/200?blur&id=$id',
       ),
     );
   }

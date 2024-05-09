@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:social_app/core/presentation/home_page.dart';
+import 'package:social_app/posts/presentation/post_detail_page.dart';
 import 'package:social_app/user/presentation/profile_page.dart';
 
 class App extends StatefulWidget {
@@ -20,6 +21,12 @@ class _AppState extends State<App> {
       GoRoute(
         path: '/profile',
         builder: (context, state) => const ProfilePage(),
+      ),
+      GoRoute(
+        path: '/post/:id',
+        builder: (context, state) => PostDetailPage(
+          postId: state.pathParameters['id']!,
+        ),
       ),
     ],
   );

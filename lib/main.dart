@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app/core/presentation/app.dart';
 import 'package:social_app/injection.dart';
+import 'package:social_app/posts/application/posts_bloc.dart';
 import 'package:social_app/user/application/user_bloc.dart';
 
 Future<void> main() async {
@@ -12,6 +13,9 @@ Future<void> main() async {
       providers: [
         BlocProvider(
           create: (ctx) => getIt<UserBloc>()..add(UserEventGet()),
+        ),
+        BlocProvider(
+          create: (ctx) => getIt<PostsBloc>(),
         ),
       ],
       child: const App(),
